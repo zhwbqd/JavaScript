@@ -31,7 +31,7 @@ function show() {
 }
 
 // Conditionally initialize the options.
-if (localStorage.isInitialized) {
+if (!localStorage.isInitialized) {
     localStorage.isActivated = true;   // The display activation.
     localStorage.frequency = 10;        // The display frequency, in minutes.
     localStorage.isInitialized = true; // The option initialization.
