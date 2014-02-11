@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <title>Notification Popup</title>
+    <style>
+        body {
+            min-width: 357px;
+            overflow-x: hidden;
+        }
+    </style>
+    <script src="options.js"></script>
+</head>
+<body>
+<h5>Notification Configuration</h5>
+<form id="options">
+    <input type="checkbox" name="isActivated" checked>
+    Display a notification every
+    <select name="frequency">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option selected>10</option>
+        <option>15</option>
+        <option>20</option>
+        <option>25</option>
+        <option>30</option>
+    </select>
+    minute(s).
+    <br>
+    select a AM start time
+    <select name="beginAm">
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option selected>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+    </select>
+    <br>
+    select a PM start time
+    <select name="beginPm">
+        <option>5</option>
+        <option selected>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+    </select>
+</form>
+</body>
+</html>
+
