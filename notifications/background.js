@@ -17,10 +17,10 @@ function show() {
         hour + time[2] + ' ' + period, // The title.
         'Time to click your working card.'      // The body.
     )
-    var beginAm = localStorage.beginAmTime;
-    var endAm = localStorage.beginAmTime + localStorage.durationTime;
-    var beginPm = localStorage.beginPmTime;
-    var endPm = localStorage.beginPmTime + localStorage.durationTime;
+    var beginAm = parseInt(localStorage.beginAmTime);
+    var endAm = parseInt(localStorage.beginAmTime) + parseInt(localStorage.durationTime);
+    var beginPm = parseInt(localStorage.beginPmTime);
+    var endPm = parseInt(localStorage.beginPmTime) + parseInt(localStorage.durationTime);
 
     if ((hour >= beginAm && hour <= endAm) || (hour >= beginPm && hour <= endPm)) {
         notification.show();
