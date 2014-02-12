@@ -37,7 +37,7 @@ if (!localStorage.isInitialized) {
     localStorage.isInitialized = true; // The option initialization.
     localStorage.beginAmTime = 9; //初始化上午开始时间
     localStorage.beginPmTime = 6;  //初始化下午开始时间
-    localStorage.durationTime = 2; //持续时间
+    localStorage.durationTime = 1; //持续时间
 }
 
 // 运行
