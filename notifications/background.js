@@ -31,14 +31,12 @@ function show() {
 }
 
 // Conditionally initialize the options.
-if (!localStorage.isInitialized) {
-    localStorage.isActivated = true;   // The display activation.
-    localStorage.frequency = 10;        // The display frequency, in minutes.
-    localStorage.isInitialized = true; // The option initialization.
-    localStorage.beginAmTime = 9; //初始化上午开始时间
-    localStorage.beginPmTime = 6;  //初始化下午开始时间
-    localStorage.durationTime = 1; //持续时间
-}
+localStorage.isActivated = true;   // The display activation.
+localStorage.frequency = 10;        // The display frequency, in minutes.localStorage.isInitialized = true; // The option initialization.
+localStorage.beginAmTime = 9; //初始化上午开始时间
+localStorage.beginPmTime = 6;  //初始化下午开始时间
+localStorage.durationTime = 1; //持续时间
+
 
 // 运行
 if (window.webkitNotifications) {
