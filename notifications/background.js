@@ -17,18 +17,23 @@ function show() {
         hour + time[2] + ' ' + period, // The title.
         'Time to click your working card.'      // The body.
     )
-    var beginAm = parseInt(localStorage.beginAmTime);
-    var endAm = parseInt(localStorage.beginAmTime) + parseInt(localStorage.durationTime);
-    var beginPm = parseInt(localStorage.beginPmTime);
-    var endPm = parseInt(localStorage.beginPmTime) + parseInt(localStorage.durationTime);
-
-    if ((hour >= beginAm && hour <= endAm) || (hour >= beginPm && hour <= endPm)) {
+    if (judge()) {
         notification.show();
         notification.onclick = function () {
             localStorage.isActivated = false;
         }
     }
 }
+
+function judge(){
+    var beginAm = parseInt(localStorage.beginAmTime);
+    var endAm = parseInt(localStorage.beginAmTime) + parseInt(localStorage.durationTime);
+    var beginPm = parseInt(localStorage.beginPmTime);
+    var endPm = parseInt(localStorage.beginPmTime) + parseInt(localStorage.durationTime);
+    var now = new Date().getHours() % 12 || 12;
+    return (now >= beginAm && now <= endAm) || (now >= beginPm && now <= endPm)
+}
+
 
 // Conditionally initialize the options.
 localStorage.isActivated = true;   // The display activation.
