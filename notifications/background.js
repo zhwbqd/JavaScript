@@ -17,10 +17,18 @@ function show() {
         hour + time[2] + ' ' + period, // The title.
         'Time to click your working card.'      // The body.
     )
-    if (judge()) {
-        notification.show();
-        notification.onclick = function () {
-            localStorage.isActivated = false;
+    var judgeResult = judge();
+    if (judgeResult.active) {
+        if(JSON.parse(localStorage.isAmActive)){
+            notification.show();
+            notification.onclick = function(){
+                localStorage.isAmActive = false;
+            }
+        }else if(JSON.parse(localStorage.isPmActive)){
+            notification.show();
+            notification.onclick = function(){
+                localStorage.isPmActive = true;
+            }
         }
     }
 }
@@ -31,13 +39,17 @@ function judge(){
     var beginPm = parseInt(localStorage.beginPmTime);
     var endPm = parseInt(localStorage.beginPmTime) + parseInt(localStorage.durationTime);
     var now = new Date().getHours() % 12 || 12;
-    return (now >= beginAm && now <= endAm) || (now >= beginPm && now <= endPm)
+    var isAm = now >= beginAm && now <= endAm;
+    var isPm = now >= beginPm && now <= endPm;
+    return {active:isAm||isPm, period: isAm?1:isPm?2:0}; //period 0--都不是  1-－上午  2-－下午
 }
 
 
 // Conditionally initialize the options.
-localStorage.isActivated = true;   // The display activation.
-localStorage.frequency = 10;        // The display frequency, in minutes.localStorage.isInitialized = true; // The option initialization.
+localStorage.isActivated = true;   // 全局定义插件是否生效
+localStorage.isAmActive = true; // 定义上午是否显示
+localStorage.isPmActive = true; //定义下午时段是否显示
+localStorage.frequency = 10;   // 显示频率
 localStorage.beginAmTime = 9; //初始化上午开始时间
 localStorage.beginPmTime = 6;  //初始化下午开始时间
 localStorage.durationTime = 1; //持续时间
