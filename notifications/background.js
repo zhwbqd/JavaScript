@@ -27,7 +27,7 @@ function show() {
         }else if(JSON.parse(localStorage.isPmActive)){
             notification.show();
             notification.onclick = function(){
-                localStorage.isPmActive = true;
+                localStorage.isPmActive = false;
             }
         }
     }
