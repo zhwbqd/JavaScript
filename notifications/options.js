@@ -18,6 +18,9 @@ window.addEventListener('load', function () {
     // The display activation.
     options.frequency.value = localStorage.frequency;
     // The display frequency, in minutes.
+    options.beginAm.value = localStorage.beginAmTime
+    options.beginPm.value = localStorage.beginPmTime
+    //beginAm and beginPm display
 
     if (!options.isActivated.checked) {
         ghost(true);
