@@ -19,12 +19,12 @@ function show() {
     )
     var judgeResult = judge();
     if (judgeResult.active) {
-        if(JSON.parse(localStorage.isAmActive)){
+        if(JSON.parse(localStorage.isAmActive)&&judgeResult.period==1){
             notification.show();
             notification.onclick = function(){
                 localStorage.isAmActive = false;
             }
-        }else if(JSON.parse(localStorage.isPmActive)){
+        }else if(JSON.parse(localStorage.isPmActive)&&judgeResult.period==2){
             notification.show();
             notification.onclick = function(){
                 localStorage.isPmActive = false;
