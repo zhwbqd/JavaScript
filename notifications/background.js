@@ -22,12 +22,14 @@ function show() {
         if(JSON.parse(localStorage.isAmActive)&&judgeResult.period==1){
             notification.show();
             notification.onclick = function(){
-                localStorage.isAmActive = false;
+                localStorage.isAmActive = false;//设置上午not Active
+                localStorage.isPmActive = true; //设置下午Active
             }
         }else if(JSON.parse(localStorage.isPmActive)&&judgeResult.period==2){
             notification.show();
             notification.onclick = function(){
-                localStorage.isPmActive = false;
+                localStorage.isPmActive = false;//设置下午not active
+                localStorage.isAmActive = true;//设置上午active
             }
         }
     }
