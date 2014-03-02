@@ -19,15 +19,15 @@ function show() {
     )
     var judgeResult = judge();
     if (judgeResult.active) {
-        if(JSON.parse(localStorage.isAmActive)&&judgeResult.period==1){
+        if (JSON.parse(localStorage.isAmActive) && judgeResult.period == 1) {
             notification.show();
-            notification.onclick = function(){
+            notification.onclick = function () {
                 localStorage.isAmActive = false;//设置上午not Active
                 localStorage.isPmActive = true; //设置下午Active
             }
-        }else if(JSON.parse(localStorage.isPmActive)&&judgeResult.period==2){
+        } else if (JSON.parse(localStorage.isPmActive) && judgeResult.period == 2) {
             notification.show();
-            notification.onclick = function(){
+            notification.onclick = function () {
                 localStorage.isPmActive = false;//设置下午not active
                 localStorage.isAmActive = true;//设置上午active
             }
@@ -35,15 +35,15 @@ function show() {
     }
 }
 
-function judge(){
+function judge() {
     var beginAm = parseInt(localStorage.beginAmTime);
     var endAm = parseInt(localStorage.beginAmTime) + parseInt(localStorage.durationTime);
-    var beginPm = parseInt(localStorage.beginPmTime);
-    var endPm = parseInt(localStorage.beginPmTime) + parseInt(localStorage.durationTime);
-    var now = new Date().getHours() % 12 || 12;
+    var beginPm = parseInt(localStorage.beginPmTime) + 12;
+    var endPm = parseInt(localStorage.beginPmTime) + parseInt(localStorage.durationTime) + 12;
+    var now = new Date().getHours();
     var isAm = now >= beginAm && now <= endAm;
     var isPm = now >= beginPm && now <= endPm;
-    return {active:isAm||isPm, period: isAm?1:isPm?2:0}; //period 0--都不是  1-－上午  2-－下午
+    return {active: isAm || isPm, period: isAm ? 1 : isPm ? 2 : 0}; //period 0--都不是  1-－上午  2-－下午
 }
 
 
