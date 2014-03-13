@@ -15,12 +15,10 @@ function ghost(isDeactivated) {
 window.addEventListener('load', function () {
     // Initialize the option controls.
     options.isActivated.checked = JSON.parse(localStorage.isActivated);
-    // The display activation.
     options.frequency.value = localStorage.frequency;
-    // The display frequency, in minutes.
-    options.beginAm.value = localStorage.beginAmTime
-    options.beginPm.value = localStorage.beginPmTime
-    //beginAm and beginPm display
+    options.beginAm.value = localStorage.beginAmTime;
+    options.beginPm.value = localStorage.beginPmTime;
+    options.notificationWords.value = localStorage.notificationWords;
 
     if (!options.isActivated.checked) {
         ghost(true);
@@ -42,5 +40,9 @@ window.addEventListener('load', function () {
 
     options.beginPm.onchange = function () {
         localStorage.beginPmTime = options.beginPm.value;
+    };
+
+    options.notificationWordsSubmit.onclick = function() {
+        localStorage.notificationWords = options.notificationWords.value;
     };
 });

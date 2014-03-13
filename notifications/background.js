@@ -12,26 +12,32 @@ function show() {
     var time = /(..)(:..)/.exec(currentTime);     // The prettyprinted time.
     var hour = time[1] % 12 || 12;               // The prettyprinted hour.
     var period = time[1] < 12 ? 'a.m.' : 'p.m.'; // The period of the day.
+    var notifyWords = localStorage.notificationWords;
     var notification = window.webkitNotifications.createNotification(
         '48.png',                      // The image.
         hour + time[2] + ' ' + period, // The title.
-        'Time to click your working card.'      // The body.
+        notifyWords      // The body.
     )
     var judgeResult = judge();
-    if (judgeResult.active) {
+    if (judgeResult.active && !JSON.parse(localStorage.alreadyDisplayed)) {
         if (JSON.parse(localStorage.isAmActive) && judgeResult.period == 1) {
             notification.show();
+            localStorage.alreadyDisplayed = true;
             notification.onclick = function () {
                 localStorage.isAmActive = false;//设置上午not Active
                 localStorage.isPmActive = true; //设置下午Active
             }
         } else if (JSON.parse(localStorage.isPmActive) && judgeResult.period == 2) {
             notification.show();
+            localStorage.alreadyDisplayed = true;
             notification.onclick = function () {
                 localStorage.isPmActive = false;//设置下午not active
                 localStorage.isAmActive = true;//设置上午active
             }
         }
+    }
+    notification.onclose = function(){
+        localStorage.alreadyDisplayed = false;
     }
 }
 
@@ -55,6 +61,8 @@ localStorage.frequency = 10;   // 显示频率
 localStorage.beginAmTime = 9; //初始化上午开始时间
 localStorage.beginPmTime = 6;  //初始化下午开始时间
 localStorage.durationTime = 1; //持续时间
+localStorage.notificationWords = '上下班打卡了么？';
+localStorage.alreadyDisplayed = false;
 
 
 // 运行
